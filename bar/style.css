@@ -1,0 +1,465 @@
+/* === style.css === */
+
+/* --- 0. Font Import (Example - Place First) --- */
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap'); */
+
+/* --- 1. Basic Reset & Box Sizing --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Smooth Scrolling --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- 2. Color Palette (Refined) --- */
+:root {
+  --clr-white: #ffffff;
+  --clr-black: #1a1a1a; /* Even softer black */
+  --clr-text-default: #383838; /* Slightly adjusted default text */
+  --clr-text-light: #666666; /* Adjusted light text */
+  --clr-border: #e0e0e0; /* Slightly darker border */
+  --clr-background-alt: #f7f7f7; /* Background for alternating sections */
+
+  /* Colletta Specific Colors */
+  --clr-brand-green: #385447;
+  --clr-brand-green-hover: #436555;
+  --clr-nav-link-hover: #555555; /* Darker grey for nav hover */
+
+  /* Fancy Additions */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 5px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+  /* Subtle Gradient */
+  --gradient-green: linear-gradient(to bottom right, var(--clr-brand-green), var(--clr-brand-green-hover));
+  --gradient-dark: linear-gradient(to bottom, var(--clr-black), #2a2a2a);
+}
+
+/* --- 3. Font Definitions (Placeholders - Needs Actual Fonts) --- */
+:root {
+  /* === IMPORTANT: Replace with actual fonts and ensure they are loaded === */
+  /* Example using imported Google Fonts: */
+  /* --font-serif: 'Playfair Display', serif; */
+  /* --font-sans-serif: 'Lato', sans-serif; */
+  --font-serif: 'Georgia', serif; /* Placeholder */
+  --font-sans-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Placeholder */
+}
+
+/* --- 4. Basic Body Styling --- */
+body {
+  font-family: var(--font-sans-serif);
+  color: var(--clr-text-default);
+  line-height: 1.75; /* Increased again slightly */
+  background-color: var(--clr-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Basic link styling with transition */
+a {
+  color: var(--clr-brand-green);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+a:hover {
+  color: var(--clr-brand-green-hover);
+  text-decoration: none;
+}
+
+/* --- Utility Class for Containers --- */
+.container {
+  max-width: 1160px; /* Slightly adjusted width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* --- Fancy: Scroll Animation Setup --- */
+/* Base state for elements that will animate */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px); /* Start slightly down */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+/* State when element becomes visible (JS will add this class) */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Add the 'animate-on-scroll' class to sections/elements you want to animate in HTML */
+
+
+/* ----------------------------- */
+/* --- Header Section Styles --- */
+/* ----------------------------- */
+.site-header {
+  background-color: var(--clr-white);
+  border-bottom: 1px solid var(--clr-border);
+  box-shadow: var(--shadow-md); /* Slightly stronger shadow */
+  position: sticky; /* Fancy: Make header sticky */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; /* Ensure it's above other content */
+  transition: box-shadow 0.3s ease;
+}
+
+.header-container {
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 90px; /* Adjusted height */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Logo Styles */
+.logo-area .logo-link {
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.logo-area .logo-link:hover { transform: scale(1.05); }
+
+.logo-main-text {
+  font-family: var(--font-serif);
+  font-size: 2rem; /* Slightly smaller */
+  font-weight: 700;
+  color: var(--clr-black);
+  display: block;
+  line-height: 1.1;
+}
+
+.logo-tagline {
+  font-family: var(--font-sans-serif);
+  font-size: 0.7rem;
+  color: var(--clr-text-light);
+  display: block;
+  margin-top: 3px;
+  font-weight: 500;
+  letter-spacing: 0.3px; /* Subtle spacing */
+}
+
+/* Desktop Navigation Styles */
+.main-nav { }
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Further increased gap */
+}
+.nav-link {
+  font-family: var(--font-sans-serif);
+  color: var(--clr-text-default);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600; /* Slightly bolder */
+  padding-bottom: 6px;
+  position: relative;
+  transition: color 0.25s ease;
+  letter-spacing: 0.4px;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--clr-brand-green);
+    transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+}
+.nav-link:hover {
+  color: var(--clr-black);
+  text-decoration: none;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* Header CTA Button Styles */
+.cta-button {
+  display: inline-block;
+  /* Fancy: Use gradient */
+  background-image: var(--gradient-green);
+  background-size: 100%; /* Control gradient size if needed */
+  color: var(--clr-white);
+  font-family: var(--font-sans-serif);
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.8px; /* More spacing */
+  padding: 14px 30px; /* Adjusted padding */
+  border: none;
+  border-radius: 50px; /* Fancy: Pill shape */
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease; /* Longer transition */
+  box-shadow: var(--shadow-md);
+}
+.cta-button:hover {
+  background-color: var(--clr-brand-green-hover); /* Fallback */
+  background-size: 150%; /* Subtle gradient shift on hover */
+  color: var(--clr-white);
+  text-decoration: none;
+  transform: translateY(-3px) scale(1.02); /* More lift and slight scale */
+  box-shadow: var(--shadow-lg); /* Larger shadow */
+}
+
+/* Mobile Menu Toggle Button (Hamburger) */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1010;
+}
+.mobile-menu-toggle .hamburger-line {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: var(--clr-black);
+  margin: 6px auto;
+  transition: all 0.3s ease-in-out;
+}
+/* Hamburger to X animation */
+.mobile-nav-overlay.is-open ~ .header-container .mobile-menu-toggle .hamburger-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.mobile-nav-overlay.is-open ~ .header-container .mobile-menu-toggle .hamburger-line:nth-child(2) { opacity: 0; }
+.mobile-nav-overlay.is-open ~ .header-container .mobile-menu-toggle .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Mobile Navigation Overlay Styles */
+.mobile-nav-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly less transparent */
+    backdrop-filter: blur(8px);
+    z-index: 999; /* Below header */
+    overflow-y: auto;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px); /* Start slightly higher */
+    transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+.mobile-nav-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.mobile-nav-container {
+    position: relative;
+    padding-top: 100px; /* More space */
+    text-align: center;
+}
+.mobile-menu-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    color: var(--clr-text-default);
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+.mobile-menu-close:hover { transform: rotate(90deg); }
+
+.mobile-nav-overlay .mobile-cta {
+    display: inline-block;
+    margin-bottom: 50px;
+    padding: 16px 40px; /* Larger */
+}
+.mobile-nav-list { list-style: none; }
+.mobile-nav-item { }
+.mobile-nav-link {
+    display: block;
+    padding: 20px 0;
+    color: var(--clr-black);
+    text-decoration: none;
+    font-size: 1.5rem; /* Larger */
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.mobile-nav-link:hover {
+    color: var(--clr-brand-green);
+    transform: scale(1.08);
+}
+.mobile-menu-footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--clr-border);
+    font-size: 0.85rem;
+    color: var(--clr-text-light);
+}
+.mobile-menu-footer p, .mobile-menu-footer a { font-size: inherit; color: inherit; margin-bottom: 8px; }
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 991px) {
+  .main-nav, .header-cta { display: none; }
+  .mobile-menu-toggle { display: block; }
+  .header-container { min-height: 70px; padding: 0 15px; } /* Reduced mobile header height */
+}
+
+/* --------------------------- */
+/* --- Hero Section Styles --- */
+/* --------------------------- */
+.hero-section { width: 100%; position: relative; }
+
+/* Slideshow Area */
+.hero-slideshow {
+  width: 100%;
+  min-height: 70vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd; /* Adjusted placeholder */
+}
+.slideshow-container { position: relative; width: 100%; height: 100%; min-height: inherit; }
+.slide {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover; background-position: center center; background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1); /* Slower, smoother fade */
+  z-index: 1;
+}
+.slide.active { opacity: 1; z-index: 2; }
+
+/* Slideshow Controls */
+.slideshow-controls {
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1160px; margin: 0 auto; padding: 20px 20px;
+  font-size: 0.9rem; color: var(--clr-text-light);
+  border-bottom: 1px solid var(--clr-border);
+}
+.slide-counter { font-weight: 500; }
+.play-pause-toggle {
+  background: none; border: none; font: inherit; font-size: 0.9rem;
+  color: var(--clr-text-light); text-decoration: underline; cursor: pointer;
+  padding: 0; transition: color 0.25s ease;
+}
+.play-pause-toggle:hover { color: var(--clr-black); }
+
+/* Text Content Area */
+.hero-text-content {
+  max-width: 800px; /* Slightly narrower */
+  margin: 0 auto; padding: 80px 20px; /* More vertical padding */
+  text-align: center;
+}
+.hero-heading {
+  font-family: var(--font-sans-serif);
+  font-size: 3.2rem; font-weight: 700; color: var(--clr-black);
+  margin-bottom: 25px; line-height: 1.3;
+  /* Fancy: Subtle text shadow */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+.hero-description {
+  font-family: var(--font-sans-serif); font-size: 1.1rem; line-height: 1.8;
+  color: var(--clr-text-default); margin-bottom: 40px;
+}
+.hero-description p { margin-bottom: 1.3em; }
+.hero-description p:last-child { margin-bottom: 0; }
+.hero-text-content .button-learn-more {
+  margin-top: 20px; padding: 16px 40px; font-size: 0.9rem;
+}
+
+/* Responsive Adjustments for Hero */
+@media (max-width: 768px) {
+  .hero-slideshow { min-height: 60vh; }
+  .hero-heading { font-size: 2.5rem; }
+  .hero-text-content { padding: 60px 15px; max-width: 90%; }
+  .hero-description { font-size: 1rem; }
+  .slideshow-controls { padding: 15px 15px; font-size: 0.85rem; }
+}
+@media (max-width: 480px) {
+  .hero-slideshow { min-height: 55vh; }
+  .hero-heading { font-size: 2.1rem; }
+}
+
+/* --- End Hero Section Styles --- */
+
+/* ------------------------------------ */
+/* --- General Page Content Styles --- */
+/* ------------------------------------ */
+.page-content .container { padding-top: 80px; padding-bottom: 80px; }
+.page-content h1 {
+    font-size: 2.8rem; margin-bottom: 40px; color: var(--clr-black);
+    text-align: center; font-weight: 700;
+}
+
+/* Styles for placeholder sections on landing page */
+.page-section {
+    padding: 80px 0; /* More padding */
+    /* Apply animation class in HTML: <section class="page-section animate-on-scroll"> */
+}
+.page-section:nth-child(even) { /* Switched to even for contrast */
+    background-color: var(--clr-background-alt);
+}
+.page-section h2 {
+    font-size: 2.2rem; margin-bottom: 25px; text-align: center;
+    color: var(--clr-black); font-weight: 700;
+}
+.page-section p {
+    text-align: center; max-width: 750px; margin-left: auto; margin-right: auto;
+    color: var(--clr-text-light); font-size: 1.05rem; line-height: 1.8;
+}
+
+/* Improved Placeholder styles for inner page content */
+.menu-placeholder, .chef-placeholder, .bar-placeholder,
+.gallery-placeholder, .delivery-placeholder, .events-placeholder {
+    margin-top: 50px;
+    padding: 50px 40px; /* More padding */
+    background-color: var(--clr-white); /* White background */
+    border: 1px solid var(--clr-border);
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: var(--shadow-md); /* Add shadow */
+    text-align: center;
+    color: var(--clr-text-light);
+    /* Apply animation class in HTML: <div class="menu-placeholder animate-on-scroll"> */
+}
+.menu-placeholder h2, .bar-placeholder h2 {
+    font-size: 1.8rem; margin-bottom: 20px;
+    color: var(--clr-text-default); font-weight: 600;
+}
+
+/* -------------------------------------- */
+/* --- Footer Placeholder Styles --- */
+/* -------------------------------------- */
+.site-footer-placeholder {
+    /* Fancy: Use dark gradient */
+    background-image: var(--gradient-dark);
+    color: #b0b0b0; /* Slightly lighter grey text */
+    padding: 60px 0; /* More padding */
+    font-size: 0.9rem;
+    margin-top: 80px;
+    border-top: 3px solid var(--clr-brand-green); /* Accent border */
+}
+.site-footer-placeholder .container { text-align: center; }
+.site-footer-placeholder p { margin: 0 0 10px; }
+.site-footer-placeholder a {
+    color: var(--clr-white);
+    text-decoration: none; /* Remove underline */
+    border-bottom: 1px dotted currentColor; /* Dotted underline */
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+.site-footer-placeholder a:hover {
+    color: var(--clr-nav-link-hover);
+    border-bottom-color: transparent; /* Remove underline on hover */
+}
+
